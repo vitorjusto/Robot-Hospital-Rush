@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4tytguh4igeq"]
+
+[ext_resource type="PackedScene" uid="uid://ciwkb2k38w8cb" path="res://Scenes/Player/Player.tscn" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://bh2budpka75hd" path="res://Scenes/Manager/FixersManager.tscn" id="2_idj7w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idj7w"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 1, 0.101960786, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kln2b"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0.7058824, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgh2o"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0, 0.101960786, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0, 1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idj7w"]
+size = Vector2(63.5, 200)
+
+[node name="Main" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 65.0
+offset_top = 880.0
+offset_right = 513.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_idj7w")
+
+[node name="Panel4" type="Panel" parent="."]
+offset_left = 513.0
+offset_top = 880.0
+offset_right = 961.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kln2b")
+
+[node name="Panel5" type="Panel" parent="."]
+offset_left = 961.0
+offset_top = 880.0
+offset_right = 1409.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rgh2o")
+
+[node name="Panel6" type="Panel" parent="."]
+offset_left = 1409.0
+offset_top = 880.0
+offset_right = 1857.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pbw6q")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_top = 880.0
+offset_right = 64.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
+
+[node name="Panel3" type="Panel" parent="."]
+offset_left = 1856.0
+offset_top = 880.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
+
+[node name="Player" parent="." instance=ExtResource("1_r150o")]
+position = Vector2(1409, 993)
+
+[node name="FixersManager" parent="." instance=ExtResource("2_idj7w")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(32.75, 979)
+shape = SubResource("RectangleShape2D_idj7w")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1888, 980)
+shape = SubResource("RectangleShape2D_idj7w")
