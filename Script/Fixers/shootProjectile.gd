@@ -110,7 +110,7 @@ func onRobotDetected(body: Node2D) -> void:
 	if robot.size > elegibleFixers.size():
 		robot.size -= elegibleFixers.size()
 	elif robot.size < elegibleFixers.size():
-		elegibleFixers.pop_at(robot.size)
+		elegibleFixers = elegibleFixers.slice(0, robot.size)
 		robot.defeat()
 	else:
 		robot.defeat()

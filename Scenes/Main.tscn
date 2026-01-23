@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ciwkb2k38w8cb" path="res://Scenes/Player/Player.tscn" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://bh2budpka75hd" path="res://Scenes/Manager/FixersManager.tscn" id="2_idj7w"]
-[ext_resource type="PackedScene" uid="uid://pg2i7765i6jp" path="res://Scenes/Robot/Robot.tscn" id="3_kln2b"]
+[ext_resource type="PackedScene" uid="uid://bk3yft8xok8y4" path="res://Scenes/Manager/RobotManager.tscn" id="3_kln2b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idj7w"]
 content_margin_left = 0.0
@@ -75,6 +75,86 @@ size = Vector2(1082.0001, 65)
 
 [node name="Main" type="Node2D"]
 
+[node name="RobotManager" parent="." node_paths=PackedStringArray("leftAnchor", "rightAnchor", "topAnchor") instance=ExtResource("3_kln2b")]
+leftAnchor = [NodePath("Node2D"), NodePath("Node2D2"), NodePath("Node2D3"), NodePath("Node2D4"), NodePath("Node2D5"), NodePath("Node2D6")]
+rightAnchor = [NodePath("Node2D7"), NodePath("Node2D8"), NodePath("Node2D9"), NodePath("Node2D10"), NodePath("Node2D11"), NodePath("Node2D12")]
+topAnchor = [NodePath("Node2D13"), NodePath("Node2D14"), NodePath("Node2D15"), NodePath("Node2D16"), NodePath("Node2D17"), NodePath("Node2D18"), NodePath("Node2D19"), NodePath("Node2D20"), NodePath("Node2D21"), NodePath("Node2D23"), NodePath("Node2D24"), NodePath("Node2D25"), NodePath("Node2D22")]
+
+[node name="Node2D13" type="Node2D" parent="RobotManager"]
+position = Vector2(192, -64)
+
+[node name="Node2D14" type="Node2D" parent="RobotManager"]
+position = Vector2(320, -64)
+
+[node name="Node2D15" type="Node2D" parent="RobotManager"]
+position = Vector2(448, -64)
+
+[node name="Node2D16" type="Node2D" parent="RobotManager"]
+position = Vector2(576, -64)
+
+[node name="Node2D17" type="Node2D" parent="RobotManager"]
+position = Vector2(704, -64)
+
+[node name="Node2D18" type="Node2D" parent="RobotManager"]
+position = Vector2(832, -64)
+
+[node name="Node2D19" type="Node2D" parent="RobotManager"]
+position = Vector2(960, -64)
+
+[node name="Node2D20" type="Node2D" parent="RobotManager"]
+position = Vector2(1088, -64)
+
+[node name="Node2D21" type="Node2D" parent="RobotManager"]
+position = Vector2(1344, -64)
+
+[node name="Node2D23" type="Node2D" parent="RobotManager"]
+position = Vector2(1472, -64)
+
+[node name="Node2D24" type="Node2D" parent="RobotManager"]
+position = Vector2(1600, -64)
+
+[node name="Node2D25" type="Node2D" parent="RobotManager"]
+position = Vector2(1728, -64)
+
+[node name="Node2D22" type="Node2D" parent="RobotManager"]
+position = Vector2(1216, -64)
+
+[node name="Node2D" type="Node2D" parent="RobotManager"]
+position = Vector2(-64, 128)
+
+[node name="Node2D2" type="Node2D" parent="RobotManager"]
+position = Vector2(-64, 256)
+
+[node name="Node2D3" type="Node2D" parent="RobotManager"]
+position = Vector2(-64, 384)
+
+[node name="Node2D4" type="Node2D" parent="RobotManager"]
+position = Vector2(-64, 512)
+
+[node name="Node2D5" type="Node2D" parent="RobotManager"]
+position = Vector2(-64, 640)
+
+[node name="Node2D6" type="Node2D" parent="RobotManager"]
+position = Vector2(-64, 768)
+
+[node name="Node2D7" type="Node2D" parent="RobotManager"]
+position = Vector2(1984, 128)
+
+[node name="Node2D8" type="Node2D" parent="RobotManager"]
+position = Vector2(1984, 256)
+
+[node name="Node2D9" type="Node2D" parent="RobotManager"]
+position = Vector2(1984, 384)
+
+[node name="Node2D10" type="Node2D" parent="RobotManager"]
+position = Vector2(1984, 512)
+
+[node name="Node2D11" type="Node2D" parent="RobotManager"]
+position = Vector2(1984, 640)
+
+[node name="Node2D12" type="Node2D" parent="RobotManager"]
+position = Vector2(1984, 768)
+
 [node name="Panel" type="Panel" parent="."]
 offset_left = 65.0
 offset_top = 880.0
@@ -124,7 +204,7 @@ position = Vector2(1409, 993)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(32, 540)
+position = Vector2(32, 537)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_kln2b")
 one_way_collision = true
@@ -135,18 +215,12 @@ shape = SubResource("RectangleShape2D_rgh2o")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(960, 24)
+rotation = 3.1415927
 shape = SubResource("RectangleShape2D_rgh2o")
+one_way_collision = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1889, 543)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_idj7w")
 one_way_collision = true
-
-[node name="Robot" parent="StaticBody2D" instance=ExtResource("3_kln2b")]
-position = Vector2(558, 541)
-size = 1
-
-[node name="Robot2" parent="StaticBody2D" instance=ExtResource("3_kln2b")]
-position = Vector2(929, 575)
-size = 1
