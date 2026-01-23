@@ -1,16 +1,16 @@
-extends CharacterBody2D
+extends Area2D
 class_name ShootProjectile
 
 var active = false
-var speed = 400
+var speed = 1100
 var fixersHolding : Array[fixer]
 
 func _physics_process(delta: float) -> void:
 	if not active:
 		return;
 	
-	velocity.y = -speed
-	move_and_slide()
+	position += Vector2(0, -speed) * delta
+	
 	handleFixers()
 	
 
@@ -97,3 +97,27 @@ func onScreenExited() -> void:
 	
 	fixersHolding.clear()
 	setActive(false)
+
+
+func onRobotDetected(body: Node2D) -> void:
+	var robot : Robot = body
+	
+	var elegibleFixers = fixersHolding.filter(func(x): return x.type == robot.type)
+	
+	if elegibleFixers.is_empty():
+		return
+	
+	if robot.size > elegibleFixers.size():
+		robot.size -= elegibleFixers.size()
+	elif robot.size < elegibleFixers.size():
+		elegibleFixers.pop_at(robot.size)
+		robot.defeat()
+	else:
+		robot.defeat()
+	
+	for i in elegibleFixers:
+		fixersHolding.erase(i)
+		i.setActive(false)
+	
+	if fixersHolding.is_empty():
+		setActive(false)

@@ -99,7 +99,7 @@ func handleFixers():
 
 func Shoot():
 	if fixersHolding.size() == 0:
-		return
+		GetFixer()
 	
 	fixersManager.shootProj(fixersHolding, position)
 	fixersHolding.clear()
