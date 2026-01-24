@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c4tytguh4igeq"]
+[gd_scene load_steps=17 format=3 uid="uid://c4tytguh4igeq"]
 
 [ext_resource type="PackedScene" uid="uid://ciwkb2k38w8cb" path="res://Scenes/Player/Player.tscn" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://bh2budpka75hd" path="res://Scenes/Manager/FixersManager.tscn" id="2_idj7w"]
 [ext_resource type="PackedScene" uid="uid://bk3yft8xok8y4" path="res://Scenes/Manager/RobotManager.tscn" id="3_kln2b"]
 [ext_resource type="Script" uid="uid://bq22mwjych3ky" path="res://Script/Manager/hud.gd" id="4_rgh2o"]
 [ext_resource type="PackedScene" uid="uid://csb3i8pceet1u" path="res://Scenes/powerUp/powerUp.tscn" id="5_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://bgg7peqqvy83l" path="res://Scenes/Robot/BombRobot.tscn" id="6_v1gob"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idj7w"]
 content_margin_left = 0.0
@@ -271,3 +272,8 @@ text = "100"
 position = Vector2(-160, 840)
 leftAnchor = NodePath("../RobotManager/Node2D6")
 rightAnchor = NodePath("../RobotManager/Node2D12")
+
+[node name="BombRobot" parent="." node_paths=PackedStringArray("leftAnchor", "rightAnchor") instance=ExtResource("6_v1gob")]
+position = Vector2(-160, 264)
+leftAnchor = NodePath("../RobotManager/Node2D2")
+rightAnchor = NodePath("../RobotManager/Node2D8")

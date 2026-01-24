@@ -37,8 +37,8 @@ func set_running_state():
 		position = rightAnchor.position
 		speed = -400
 	
-	#var rng = randi_range(0, 5)
-	var rng = 6
+	var rng = randi_range(0, 5)
+	
 	if rng == 0:
 		Type = EPOWERUPTYPE.TimerUp
 	elif rng == 1:

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgg7peqqvy83l"]
+
+[ext_resource type="Script" uid="uid://cfoojkmj0et3d" path="res://Script/Robot/bombRobot.gd" id="1_8x337"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxsma"]
+size = Vector2(80, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8x337"]
+radius = 320.09998
+
+[node name="BombRobot" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_8x337")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fxsma")
+debug_color = Color(1, 1, 0, 0.41960785)
+
+[node name="ExplodingArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodingArea"]
+shape = SubResource("CircleShape2D_8x337")
+disabled = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="ExplodingArea" to="." method="onRobotDetected"]
