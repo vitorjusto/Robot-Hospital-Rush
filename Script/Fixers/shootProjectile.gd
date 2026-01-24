@@ -117,6 +117,6 @@ func onScreenExited() -> void:
 func onRobotDetected(body: Node2D) -> void:
 	var robot : Robot = body
 	robot.defeat()
-	score += 10 * scoreModifier * manager.streak
+	score += 1 * scoreModifier * manager.streak
 	hud.add_score(score)
 	hitSomething = true

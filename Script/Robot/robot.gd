@@ -7,19 +7,22 @@ var speed = Vector2(200, 100)
 @onready var col : CollisionShape2D = get_node("CollisionShape2D")
 var active = false
 @onready var manager : RobotManager = get_tree().root.get_node("/root/Main/RobotManager")
+@onready var main : Main = get_tree().root.get_node("/root/Main")
 
-var timer = 40
+var timer = 20
+var timer2 = 1
 
 func _physics_process(delta: float) -> void:
 	if not active:
 		return
 	
-	timer -= delta / 2 if manager.frezeTimer > 0 else delta
-	
-	if timer < 10:
-		modulate = Color.RED
-	elif timer < 0:
+	timer -= timer2 * delta / 2 if manager.frezeTimer > 0 else delta * timer2
+	timer2 += delta * 0.02
+	if timer < 0:
 		modulate = Color.BLACK
+		main.EndGame()
+	elif timer < 10:
+		modulate = Color.RED
 	elif manager.frezeTimer > 0:
 		modulate = Color.BLUE
 	else:

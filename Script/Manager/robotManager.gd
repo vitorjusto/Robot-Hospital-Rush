@@ -48,15 +48,15 @@ func addRobot():
 	if rng == 1:
 		var anchor = leftAnchor[randi_range(0, leftAnchor.size() - 1)]
 		instance.position = anchor.position
-		instance.speed = Vector2(50 * timerModifier, randf_range(-20, 20))
+		instance.speed = Vector2(70 * timerModifier, randf_range(-30, 30))
 	elif rng == 2:
 		var anchor = rightAnchor[randi_range(0, rightAnchor.size() - 1)]
 		instance.position = anchor.position
-		instance.speed = Vector2(-50 * timerModifier, randf_range(-20, 20))
+		instance.speed = Vector2(-70 * timerModifier, randf_range(-30, 30))
 	else:
 		var anchor = topAnchor[randi_range(0, topAnchor.size() - 1)]
 		instance.position = anchor.position
-		instance.speed = Vector2(randf_range(-20, 20), 50 * timerModifier)
+		instance.speed = Vector2(randf_range(-30, 30), 70 * timerModifier)
 		
 	
 
@@ -68,3 +68,8 @@ func nuke():
 		r.setActive(false)
 		score += 100
 		hud.add_score(score)
+
+func deactivateEveryRobot():
+	var actives = robot.filter(func(x): return x.active)
+	for r in actives:
+		r.setActive(false)

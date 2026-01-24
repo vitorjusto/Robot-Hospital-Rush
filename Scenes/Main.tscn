@@ -86,8 +86,9 @@ size = Vector2(1420, 65)
 [sub_resource type="LabelSettings" id="LabelSettings_jw32o"]
 font_size = 64
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("rManager")]
 script = ExtResource("1_jw32o")
+rManager = NodePath("RobotManager")
 
 [node name="RobotManager" parent="." node_paths=PackedStringArray("leftAnchor", "rightAnchor", "topAnchor", "hud") instance=ExtResource("3_kln2b")]
 leftAnchor = [NodePath("Node2D"), NodePath("Node2D2"), NodePath("Node2D3"), NodePath("Node2D4"), NodePath("Node2D5"), NodePath("Node2D6")]
@@ -255,9 +256,10 @@ rotation = -1.5707964
 shape = SubResource("RectangleShape2D_idj7w")
 one_way_collision = true
 
-[node name="hud" type="CanvasLayer" parent="." node_paths=PackedStringArray("manager")]
+[node name="hud" type="CanvasLayer" parent="." node_paths=PackedStringArray("manager", "main")]
 script = ExtResource("4_rgh2o")
 manager = NodePath("../RobotManager")
+main = NodePath("..")
 
 [node name="lblScore" type="Label" parent="hud"]
 offset_left = 1752.0
@@ -299,4 +301,30 @@ offset_top = 416.0
 offset_right = 1040.0
 offset_bottom = 504.0
 text = "PAUSE"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="clEndScreen" type="CanvasLayer" parent="."]
+layer = 4
+visible = false
+
+[node name="Panel" type="Panel" parent="clEndScreen"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 2112.0
+offset_bottom = 1216.0
+
+[node name="Label" type="Label" parent="clEndScreen"]
+offset_left = 832.0
+offset_top = 256.0
+offset_right = 1199.0
+offset_bottom = 344.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="lblScore" type="Label" parent="clEndScreen"]
+offset_left = 832.0
+offset_top = 352.0
+offset_right = 1199.0
+offset_bottom = 440.0
+text = "00000"
 label_settings = SubResource("LabelSettings_jw32o")

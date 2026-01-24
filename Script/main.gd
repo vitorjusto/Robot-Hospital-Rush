@@ -1,8 +1,13 @@
 extends Node2D
+class_name Main
 
 var isPaused = false
 var pausedObjects = []
 @onready var clPause : CanvasLayer = get_node("clPause")
+@onready var hud : Hud = get_node("hud")
+@onready var clEndScreen : CanvasLayer = get_node("clEndScreen")
+@onready var lblScore : Label = get_node("clEndScreen/lblScore")
+@export var rManager : RobotManager
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Pause"):
@@ -11,18 +16,20 @@ func _process(delta: float) -> void:
 		if isPaused:
 			PauseObjects(get_children())
 		else:
-			for i in pausedObjects:
-				i.set_physics_process(true)
-				i.set_process(true)
-				if i is AnimatedSprite2D:
-					var ani : AnimatedSprite2D = i
-					ani.play()
-				if i is AnimationPlayer:
-					var ani : AnimationPlayer = i
-					ani.play()
+			UnpauseObjects()
+
+func UnpauseObjects():
+	for i in pausedObjects:
+		i.set_physics_process(true)
+		i.set_process(true)
+		if i is AnimatedSprite2D:
+			var ani : AnimatedSprite2D = i
+			ani.play()
+		if i is AnimationPlayer:
+			var ani : AnimationPlayer = i
+			ani.play()
 			
-			pausedObjects.clear()
-	
+	pausedObjects.clear()
 
 func PauseObjects(nodes : Array[Node]):
 	for i in nodes:
@@ -42,4 +49,10 @@ func PauseObjects(nodes : Array[Node]):
 			ani.pause()
 		
 		PauseObjects(i.get_children())
+
+func EndGame():
+	PauseObjects(get_children())
+	clEndScreen.visible = true
+	rManager.deactivateEveryRobot()
+	lblScore.text = "%d" % hud.score
 	
