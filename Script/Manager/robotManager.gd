@@ -35,21 +35,20 @@ func addRobot():
 		return
 	
 	instance.setActive(true)
-	instance.changeType()
 	
 	var rng = randi_range(1, 3)
 	
 	if rng == 1:
 		var anchor = leftAnchor[randi_range(0, leftAnchor.size() - 1)]
 		instance.position = anchor.position
-		instance.speed = Vector2(50, randf_range(-50, 50))
+		instance.speed = Vector2(50 * timerModifier, randf_range(-20, 20))
 	elif rng == 2:
 		var anchor = rightAnchor[randi_range(0, rightAnchor.size() - 1)]
 		instance.position = anchor.position
-		instance.speed = Vector2(-50, randf_range(-50, 50))
+		instance.speed = Vector2(-50 * timerModifier, randf_range(-20, 20))
 	else:
 		var anchor = topAnchor[randi_range(0, topAnchor.size() - 1)]
 		instance.position = anchor.position
-		instance.speed = Vector2(randf_range(-50, 50), 50)
+		instance.speed = Vector2(randf_range(-20, 20), 50 * timerModifier)
 		
 	

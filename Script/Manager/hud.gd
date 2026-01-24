@@ -2,7 +2,7 @@ extends CanvasLayer
 class_name Hud
 
 var score = 0
-var timer = 100
+var timer = 200
 var timerSpeedModifier = 1
 
 @onready var lblScore : Label = get_node("lblScore")

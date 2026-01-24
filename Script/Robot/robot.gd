@@ -2,15 +2,25 @@ extends CharacterBody2D
 class_name Robot
 
 var speed = Vector2(200, 100)
-@export var type : fixer.EFixerType
 @export var size : int = 1
 
 @onready var col : CollisionShape2D = get_node("CollisionShape2D")
 var active = false
 
+var timer = 40
+
 func _physics_process(delta: float) -> void:
 	if not active:
 		return
+	
+	timer -= delta
+	
+	if timer < 0:
+		modulate = Color.BLACK
+	elif timer < 10:
+		modulate = Color.RED
+	else:
+		modulate = Color.WHITE
 	
 	velocity = speed
 	if move_and_slide():
@@ -24,22 +34,7 @@ func defeat():
 	setActive(false)
 
 func setActive(v : bool):
+	timer = 40
 	active = v
 	visible = active
 	col.set_deferred("disabled", not active)
-
-func changeType():
-	var rng = randi_range(1, 4)
-	
-	if rng == 1:
-		type = fixer.EFixerType.NUT
-		modulate = Color.BLACK
-	elif rng == 2:
-		type = fixer.EFixerType.BOLT
-		modulate = Color.GREEN
-	elif rng == 3:
-		type = fixer.EFixerType.GEAR
-		modulate = Color.RED
-	else:
-		type = fixer.EFixerType.BATTERY
-		modulate = Color.BLUE
