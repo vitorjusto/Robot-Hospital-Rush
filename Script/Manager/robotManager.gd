@@ -7,7 +7,7 @@ extends Node2D
 @export var rightAnchor : Array[Node2D]
 @export var topAnchor : Array[Node2D]
 
-var timer = 100
+var timer = 70
 
 func _ready() -> void:
 	for i in range(0, 50):
@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	
 	if timer <= 0:
 		addRobot()
-		timer = 100
+		timer = 70
 	
 
 func addNewRobot() -> Robot:
