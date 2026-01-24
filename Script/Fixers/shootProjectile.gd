@@ -2,8 +2,9 @@ extends Area2D
 class_name ShootProjectile
 
 var active = false
-var speed = 1100
+var speed = 2200
 var fixersHolding : Array[fixer]
+@onready var col : CollisionShape2D = get_node("CollisionShape2D")
 
 func _physics_process(delta: float) -> void:
 	if not active:
@@ -89,7 +90,7 @@ func handleFixers():
 func setActive(value : bool):
 	active = value
 	visible = value
-
+	col.disabled = not value
 
 func onScreenExited() -> void:
 	for f in fixersHolding:
@@ -102,22 +103,4 @@ func onScreenExited() -> void:
 func onRobotDetected(body: Node2D) -> void:
 	var robot : Robot = body
 	
-	var elegibleFixers = fixersHolding.filter(func(x): return x.type == robot.type)
-	
-	if elegibleFixers.is_empty():
-		return
-	
-	if robot.size > elegibleFixers.size():
-		robot.size -= elegibleFixers.size()
-	elif robot.size < elegibleFixers.size():
-		elegibleFixers = elegibleFixers.slice(0, robot.size)
-		robot.defeat()
-	else:
-		robot.defeat()
-	
-	for i in elegibleFixers:
-		fixersHolding.erase(i)
-		i.setActive(false)
-	
-	if fixersHolding.is_empty():
-		setActive(false)
+	robot.defeat()
