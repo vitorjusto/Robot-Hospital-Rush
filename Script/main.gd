@@ -7,10 +7,18 @@ var pausedObjects = []
 @onready var hud : Hud = get_node("hud")
 @onready var clEndScreen : CanvasLayer = get_node("clEndScreen")
 @onready var lblScore : Label = get_node("clEndScreen/lblScore")
+
 @export var rManager : RobotManager
+@export var fManager : fixersManager
+@export var player : Player
+@export var powerUp : PowerUp
+@export var bombRobot : BombRobot
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Pause"):
+	if clEndScreen.visible:
+		if Input.is_action_just_pressed("Shoot"):
+			reloadGame()
+	elif Input.is_action_just_pressed("Pause"):
 		isPaused = !isPaused
 		clPause.visible = isPaused
 		if isPaused:
@@ -55,4 +63,13 @@ func EndGame():
 	clEndScreen.visible = true
 	rManager.deactivateEveryRobot()
 	lblScore.text = "%d" % hud.score
-	
+
+func reloadGame():
+	rManager.resetManager()
+	fManager.resetManager()
+	hud.resetHud()
+	player.position = Vector2(960, 1000)
+	powerUp.resetPowerUp()
+	bombRobot.ResetBombRobot()
+	UnpauseObjects()
+	clEndScreen.visible = false

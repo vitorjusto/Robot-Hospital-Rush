@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 
 const SPEED = 1000.0
 @onready var fixersManager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")

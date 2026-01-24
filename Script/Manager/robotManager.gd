@@ -17,6 +17,14 @@ func _ready() -> void:
 	for i in range(0, 200):
 		addNewRobot()
 
+func resetManager():
+	for i in robot:
+		i.reset()
+	
+	timer = 70
+	timerModifier = 1
+	frezeTimer = 0
+
 func _process(delta: float) -> void:
 	timer -= delta * 60 * timerModifier
 	timerModifier += delta * 0.02
@@ -57,8 +65,7 @@ func addRobot():
 		var anchor = topAnchor[randi_range(0, topAnchor.size() - 1)]
 		instance.position = anchor.position
 		instance.speed = Vector2(randf_range(-30, 30), 70 * timerModifier)
-		
-	
+
 
 func nuke():
 	var actives = robot.filter(func(x): return x.active)

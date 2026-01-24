@@ -86,9 +86,13 @@ size = Vector2(1420, 65)
 [sub_resource type="LabelSettings" id="LabelSettings_jw32o"]
 font_size = 64
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("rManager")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("rManager", "fManager", "player", "powerUp", "bombRobot")]
 script = ExtResource("1_jw32o")
 rManager = NodePath("RobotManager")
+fManager = NodePath("FixersManager")
+player = NodePath("Player")
+powerUp = NodePath("PowerUp")
+bombRobot = NodePath("BombRobot")
 
 [node name="RobotManager" parent="." node_paths=PackedStringArray("leftAnchor", "rightAnchor", "topAnchor", "hud") instance=ExtResource("3_kln2b")]
 leftAnchor = [NodePath("Node2D"), NodePath("Node2D2"), NodePath("Node2D3"), NodePath("Node2D4"), NodePath("Node2D5"), NodePath("Node2D6")]
@@ -213,7 +217,7 @@ offset_bottom = 1080.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
 
 [node name="Player" parent="." instance=ExtResource("1_r150o")]
-position = Vector2(1409, 993)
+position = Vector2(960, 1000)
 
 [node name="FixersManager" parent="." instance=ExtResource("2_idj7w")]
 

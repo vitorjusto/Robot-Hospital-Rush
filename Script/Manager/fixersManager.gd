@@ -7,6 +7,12 @@ class_name fixersManager
 var scoreFrenzyTimer = 0
 var streak = 1
 
+func resetManager():
+	streak = 1
+	scoreFrenzyTimer = 0
+	for i in projFixer:
+		i.setActive(false)
+
 func _ready() -> void:
 	for i in range(0, 10):
 		addProj()

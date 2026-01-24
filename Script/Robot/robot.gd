@@ -40,6 +40,10 @@ func _physics_process(delta: float) -> void:
 func defeat():
 	setActive(false)
 
+func reset():
+	setActive(false)
+	timer2 = 1
+
 func setActive(v : bool):
 	timer = 40
 	active = v

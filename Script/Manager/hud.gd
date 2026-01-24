@@ -10,6 +10,11 @@ var timerSpeedModifier = 1
 @export var manager : RobotManager
 @export var main : Main
 
+func resetHud():
+	score = 0
+	timer = 200
+	timerSpeedModifier = 1
+
 func _process(delta: float) -> void:
 	var newDelta = delta / 2 if manager.frezeTimer > 0 else delta
 	timer -= newDelta * timerSpeedModifier

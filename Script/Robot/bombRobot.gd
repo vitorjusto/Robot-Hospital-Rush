@@ -1,21 +1,34 @@
 extends Area2D
+class_name BombRobot
 
 enum ESTATE{ Idle, Running, Exploding}
 @onready var hud : Hud = get_tree().root.get_node("/root/Main/hud")
 @onready var manager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")
 @onready var robotManager : RobotManager = get_tree().root.get_node("/root/Main/RobotManager")
 
+const INITIAL_TIMER = 30
+const INITIAL_SPEED = 600
+
+
 var state : ESTATE = ESTATE.Idle
-var timer = 30
-var explodingTimer = 2
+var timer = INITIAL_TIMER
+var explodingTimer = 1
 var score = 0
 var startOnLeft = true
-var speed = 600
+var speed = INITIAL_SPEED
 @onready var col : CollisionShape2D = get_node("CollisionShape2D")
 @onready var exCol : CollisionShape2D = get_node("ExplodingArea/CollisionShape2D")
 
 @export var leftAnchor: Node2D
 @export var rightAnchor: Node2D
+
+func ResetBombRobot():
+	state = ESTATE.Idle
+	explodingTimer = 1
+	score = 0
+	startOnLeft = true
+	speed = INITIAL_SPEED
+	timer = INITIAL_TIMER
 
 func _process(delta: float) -> void:
 	if state == ESTATE.Idle:

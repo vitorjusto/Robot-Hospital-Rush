@@ -1,4 +1,5 @@
 extends Area2D
+class_name PowerUp
 
 enum EPOWERUPTYPE{ TimerUp, ScoreMult, ScoreFrenzy, SuperTimerUp, SuperScoreMult, ScreenNuke, FrezeTime}
 enum ESTATE{ Idle, Running}
@@ -7,14 +8,25 @@ enum ESTATE{ Idle, Running}
 @onready var manager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")
 @onready var robotManager : RobotManager = get_tree().root.get_node("/root/Main/RobotManager")
 
-var state : ESTATE = ESTATE.Idle
-var timer = 5
+const INITIAL_STATE = ESTATE.Idle
+const INITIAL_TIMER = 5
+const INITIAL_SPEED = 400
+
+var state : ESTATE = INITIAL_STATE
+var timer = INITIAL_TIMER
 var startOnLeft = true
-var speed = 400
+var speed = INITIAL_SPEED
+
 @onready var col : CollisionShape2D = get_node("CollisionShape2D")
 
 @export var leftAnchor: Node2D
 @export var rightAnchor: Node2D
+
+func resetPowerUp():
+	state = INITIAL_STATE
+	startOnLeft = true
+	speed = INITIAL_SPEED
+	timer = INITIAL_TIMER
 
 func _process(delta: float) -> void:
 	if state == ESTATE.Idle:
