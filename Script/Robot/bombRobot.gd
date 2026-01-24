@@ -23,12 +23,12 @@ var speed = INITIAL_SPEED
 @export var rightAnchor: Node2D
 
 func ResetBombRobot():
-	state = ESTATE.Idle
 	explodingTimer = 1
 	score = 0
 	startOnLeft = true
 	speed = INITIAL_SPEED
 	timer = INITIAL_TIMER
+	position = leftAnchor.position
 
 func _process(delta: float) -> void:
 	if state == ESTATE.Idle:

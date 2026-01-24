@@ -307,6 +307,30 @@ offset_bottom = 504.0
 text = "PAUSE"
 label_settings = SubResource("LabelSettings_jw32o")
 
+[node name="lblPauseContinue" type="Label" parent="clPause"]
+offset_left = 400.0
+offset_top = 664.0
+offset_right = 681.0
+offset_bottom = 752.0
+text = "Continue"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="lblPauseRestart" type="Label" parent="clPause"]
+offset_left = 840.0
+offset_top = 680.0
+offset_right = 1121.0
+offset_bottom = 768.0
+text = "Restart"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="lblPauseExit" type="Label" parent="clPause"]
+offset_left = 1272.0
+offset_top = 680.0
+offset_right = 1553.0
+offset_bottom = 768.0
+text = "Exit"
+label_settings = SubResource("LabelSettings_jw32o")
+
 [node name="clEndScreen" type="CanvasLayer" parent="."]
 layer = 4
 visible = false
@@ -331,4 +355,54 @@ offset_top = 352.0
 offset_right = 1199.0
 offset_bottom = 440.0
 text = "00000"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="lblEndRestart" type="Label" parent="clEndScreen"]
+offset_left = 544.0
+offset_top = 664.0
+offset_right = 825.0
+offset_bottom = 752.0
+text = "Restart"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="lblEndExit" type="Label" parent="clEndScreen"]
+offset_left = 1248.0
+offset_top = 672.0
+offset_right = 1529.0
+offset_bottom = 760.0
+text = "Exit"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="clConfirmScreen" type="CanvasLayer" parent="."]
+layer = 4
+visible = false
+
+[node name="Panel2" type="Panel" parent="clConfirmScreen"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 2112.0
+offset_bottom = 1216.0
+
+[node name="Label2" type="Label" parent="clConfirmScreen"]
+offset_left = 736.0
+offset_top = 200.0
+offset_right = 1160.0
+offset_bottom = 288.0
+text = "Are you Sure?"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="lblYes" type="Label" parent="clConfirmScreen"]
+offset_left = 504.0
+offset_top = 488.0
+offset_right = 928.0
+offset_bottom = 576.0
+text = "Yes"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="lblNo" type="Label" parent="clConfirmScreen"]
+offset_left = 1056.0
+offset_top = 472.0
+offset_right = 1480.0
+offset_bottom = 560.0
+text = "No"
 label_settings = SubResource("LabelSettings_jw32o")
