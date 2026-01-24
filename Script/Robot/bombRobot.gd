@@ -59,7 +59,6 @@ func set_exploding_state():
 func _on_area_entered(area: Area2D) -> void:
 	set_exploding_state()
 
-
 func onRobotDetected(body: Node2D) -> void:
 	score += 100 
 	hud.add_score(score * manager.streak)

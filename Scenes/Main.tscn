@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://c4tytguh4igeq"]
+[gd_scene load_steps=19 format=3 uid="uid://c4tytguh4igeq"]
 
+[ext_resource type="Script" uid="uid://7vhjmj26pm3u" path="res://Script/main.gd" id="1_jw32o"]
 [ext_resource type="PackedScene" uid="uid://ciwkb2k38w8cb" path="res://Scenes/Player/Player.tscn" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://bh2budpka75hd" path="res://Scenes/Manager/FixersManager.tscn" id="2_idj7w"]
 [ext_resource type="PackedScene" uid="uid://bk3yft8xok8y4" path="res://Scenes/Manager/RobotManager.tscn" id="3_kln2b"]
@@ -82,7 +83,11 @@ size = Vector2(2672, 47)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idj7w"]
 size = Vector2(1420, 65)
 
+[sub_resource type="LabelSettings" id="LabelSettings_jw32o"]
+font_size = 64
+
 [node name="Main" type="Node2D"]
+script = ExtResource("1_jw32o")
 
 [node name="RobotManager" parent="." node_paths=PackedStringArray("leftAnchor", "rightAnchor", "topAnchor", "hud") instance=ExtResource("3_kln2b")]
 leftAnchor = [NodePath("Node2D"), NodePath("Node2D2"), NodePath("Node2D3"), NodePath("Node2D4"), NodePath("Node2D5"), NodePath("Node2D6")]
@@ -277,3 +282,21 @@ rightAnchor = NodePath("../RobotManager/Node2D12")
 position = Vector2(-160, 264)
 leftAnchor = NodePath("../RobotManager/Node2D2")
 rightAnchor = NodePath("../RobotManager/Node2D8")
+
+[node name="clPause" type="CanvasLayer" parent="."]
+layer = 4
+visible = false
+
+[node name="Panel" type="Panel" parent="clPause"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 2112.0
+offset_bottom = 1216.0
+
+[node name="Label" type="Label" parent="clPause"]
+offset_left = 840.0
+offset_top = 416.0
+offset_right = 1040.0
+offset_bottom = 504.0
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_jw32o")
