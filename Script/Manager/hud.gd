@@ -7,10 +7,12 @@ var timerSpeedModifier = 1
 
 @onready var lblScore : Label = get_node("lblScore")
 @onready var lblTimer: Label = get_node("lblTimer")
+@export var manager : RobotManager
 
 func _process(delta: float) -> void:
-	timer -= delta * timerSpeedModifier
-	timerSpeedModifier += delta * 0.02
+	var newDelta = delta / 2 if manager.frezeTimer > 0 else delta
+	timer -= newDelta * timerSpeedModifier
+	timerSpeedModifier += newDelta * 0.02
 	lblTimer.text = "%d" %  ceil(timer)
 
 func add_score(s: int):

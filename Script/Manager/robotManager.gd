@@ -1,4 +1,5 @@
 extends Node2D
+class_name RobotManager
 
 @onready var robot : Array[Robot]
 @onready var robotScene : PackedScene = load("res://Scenes/Robot/Robot.tscn")
@@ -6,9 +7,12 @@ extends Node2D
 @export var leftAnchor : Array[Node2D]
 @export var rightAnchor : Array[Node2D]
 @export var topAnchor : Array[Node2D]
+@export var hud : Hud
 
 var timer = 70
 var timerModifier = 1
+
+var frezeTimer = 0
 func _ready() -> void:
 	for i in range(0, 200):
 		addNewRobot()
@@ -19,6 +23,9 @@ func _process(delta: float) -> void:
 	if timer <= 0:
 		addRobot()
 		timer = 70
+	
+	if frezeTimer > 0:
+		frezeTimer -= delta
 	
 
 func addNewRobot() -> Robot:
@@ -52,3 +59,12 @@ func addRobot():
 		instance.speed = Vector2(randf_range(-20, 20), 50 * timerModifier)
 		
 	
+
+func nuke():
+	var actives = robot.filter(func(x): return x.active)
+	var score = 0
+	
+	for r in actives:
+		r.setActive(false)
+		score += 100
+		hud.add_score(score)

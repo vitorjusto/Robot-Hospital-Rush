@@ -1,10 +1,11 @@
 extends Area2D
 
-enum EPOWERUPTYPE{ TimerUp, ScoreMult, ScoreFrenzy, SuperTimerUp, SuperScoreMult}
+enum EPOWERUPTYPE{ TimerUp, ScoreMult, ScoreFrenzy, SuperTimerUp, SuperScoreMult, ScreenNuke, FrezeTime}
 enum ESTATE{ Idle, Running}
 @export var Type : EPOWERUPTYPE
 @onready var hud : Hud = get_tree().root.get_node("/root/Main/hud")
 @onready var manager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")
+@onready var robotManager : RobotManager = get_tree().root.get_node("/root/Main/RobotManager")
 
 var state : ESTATE = ESTATE.Idle
 var timer = 5
@@ -36,18 +37,22 @@ func set_running_state():
 		position = rightAnchor.position
 		speed = -400
 	
-	var rng = randi_range(0, 4)
-	
+	#var rng = randi_range(0, 5)
+	var rng = 6
 	if rng == 0:
 		Type = EPOWERUPTYPE.TimerUp
 	elif rng == 1:
 		Type = EPOWERUPTYPE.ScoreMult
 	elif rng == 2:
 		Type = EPOWERUPTYPE.ScoreFrenzy
-	elif rng == 0:
+	elif rng == 3:
 		Type = EPOWERUPTYPE.SuperTimerUp
-	elif rng == 1:
+	elif rng == 4:
 		Type = EPOWERUPTYPE.SuperScoreMult
+	elif rng == 5:
+		Type = EPOWERUPTYPE.ScreenNuke
+	elif rng == 6:
+		Type = EPOWERUPTYPE.FrezeTime
 	
 
 func set_idle_state():
@@ -71,4 +76,9 @@ func _on_area_entered(area: Area2D) -> void:
 	elif Type == EPOWERUPTYPE.SuperScoreMult:
 		var proj : ShootProjectile = area
 		proj.scoreModifier = 20
+	elif Type == EPOWERUPTYPE.ScreenNuke:
+		robotManager.nuke()
+	elif Type == EPOWERUPTYPE.FrezeTime:
+		robotManager.frezeTimer = 5
+	
 	set_idle_state()

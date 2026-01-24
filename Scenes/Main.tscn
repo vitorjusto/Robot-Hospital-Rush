@@ -83,10 +83,11 @@ size = Vector2(1420, 65)
 
 [node name="Main" type="Node2D"]
 
-[node name="RobotManager" parent="." node_paths=PackedStringArray("leftAnchor", "rightAnchor", "topAnchor") instance=ExtResource("3_kln2b")]
+[node name="RobotManager" parent="." node_paths=PackedStringArray("leftAnchor", "rightAnchor", "topAnchor", "hud") instance=ExtResource("3_kln2b")]
 leftAnchor = [NodePath("Node2D"), NodePath("Node2D2"), NodePath("Node2D3"), NodePath("Node2D4"), NodePath("Node2D5"), NodePath("Node2D6")]
 rightAnchor = [NodePath("Node2D7"), NodePath("Node2D8"), NodePath("Node2D9"), NodePath("Node2D10"), NodePath("Node2D11"), NodePath("Node2D12")]
 topAnchor = [NodePath("Node2D13"), NodePath("Node2D14"), NodePath("Node2D15"), NodePath("Node2D16"), NodePath("Node2D17"), NodePath("Node2D18"), NodePath("Node2D19"), NodePath("Node2D20"), NodePath("Node2D21"), NodePath("Node2D23"), NodePath("Node2D24"), NodePath("Node2D25"), NodePath("Node2D22")]
+hud = NodePath("../hud")
 
 [node name="Node2D13" type="Node2D" parent="RobotManager"]
 position = Vector2(192, -64)
@@ -248,8 +249,9 @@ rotation = -1.5707964
 shape = SubResource("RectangleShape2D_idj7w")
 one_way_collision = true
 
-[node name="hud" type="CanvasLayer" parent="."]
+[node name="hud" type="CanvasLayer" parent="." node_paths=PackedStringArray("manager")]
 script = ExtResource("4_rgh2o")
+manager = NodePath("../RobotManager")
 
 [node name="lblScore" type="Label" parent="hud"]
 offset_left = 1752.0
