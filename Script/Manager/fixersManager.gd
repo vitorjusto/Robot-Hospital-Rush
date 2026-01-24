@@ -4,9 +4,15 @@ class_name fixersManager
 @onready var projFixer : Array[ShootProjectile]
 @onready var projFixerScene : PackedScene = load("res://Scenes/Fixers/ShootProjectile.tscn")
 
+var scoreFrenzyTimer = 0
+
 func _ready() -> void:
 	for i in range(0, 10):
 		addProj()
+
+func _process(delta : float):
+	if scoreFrenzyTimer > 0:
+		scoreFrenzyTimer -= delta
 
 func addProj() -> ShootProjectile:
 	var instance : ShootProjectile = projFixerScene.instantiate()
@@ -23,5 +29,8 @@ func shootProj(pos: Vector2) -> ShootProjectile:
 		
 	instance.setActive(true)
 	instance.position = pos
+	
+	if scoreFrenzyTimer > 0:
+		instance.scoreModifier = 2
 	
 	return instance

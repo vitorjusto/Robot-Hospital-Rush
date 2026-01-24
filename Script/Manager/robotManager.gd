@@ -8,14 +8,14 @@ extends Node2D
 @export var topAnchor : Array[Node2D]
 
 var timer = 70
-
+var timerModifier = 1
 func _ready() -> void:
-	for i in range(0, 50):
+	for i in range(0, 200):
 		addNewRobot()
 
 func _process(delta: float) -> void:
-	timer -= delta * 60
-	
+	timer -= delta * 60 * timerModifier
+	timerModifier += delta * 0.02
 	if timer <= 0:
 		addRobot()
 		timer = 70
@@ -32,8 +32,8 @@ func addRobot():
 	var instance = inactive[0] if inactive.size() > 0 else null
 	
 	if instance == null:
-		instance = addNewRobot()
-		
+		return
+	
 	instance.setActive(true)
 	instance.changeType()
 	

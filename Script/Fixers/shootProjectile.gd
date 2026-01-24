@@ -4,6 +4,8 @@ class_name ShootProjectile
 var active = false
 var speed = 2200
 var score = 0
+var scoreModifier = 1
+
 var fixersHolding : Array[fixer]
 @onready var col : CollisionShape2D = get_node("CollisionShape2D")
 @onready var hud : Hud = get_tree().root.get_node("/root/Main/hud")
@@ -94,6 +96,7 @@ func setActive(value : bool):
 	visible = value
 	col.disabled = not value
 	score = 0
+	scoreModifier = 1
 
 func onScreenExited() -> void:
 	for f in fixersHolding:
@@ -106,5 +109,5 @@ func onScreenExited() -> void:
 func onRobotDetected(body: Node2D) -> void:
 	var robot : Robot = body
 	robot.defeat()
-	score += 10
+	score += 10 * scoreModifier
 	hud.add_score(score)
