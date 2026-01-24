@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4tytguh4igeq"]
+[gd_scene load_steps=16 format=3 uid="uid://c4tytguh4igeq"]
 
 [ext_resource type="PackedScene" uid="uid://ciwkb2k38w8cb" path="res://Scenes/Player/Player.tscn" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://bh2budpka75hd" path="res://Scenes/Manager/FixersManager.tscn" id="2_idj7w"]
@@ -67,13 +67,19 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kln2b"]
-size = Vector2(1076, 64)
+size = Vector2(1528, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbw6q"]
+size = Vector2(1528, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1gob"]
+size = Vector2(60, 1864)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgh2o"]
-size = Vector2(1791.75, 47)
+size = Vector2(2672, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idj7w"]
-size = Vector2(1082.0001, 65)
+size = Vector2(1420, 65)
 
 [node name="Main" type="Node2D"]
 
@@ -206,23 +212,38 @@ position = Vector2(1409, 993)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(32, 537)
+position = Vector2(32.000004, 476)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_kln2b")
 one_way_collision = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-344, 472)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2232, 312)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_pbw6q")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(931.99994, -274.00006)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_v1gob")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(960.125, 903.5)
 shape = SubResource("RectangleShape2D_rgh2o")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(960, 24)
-rotation = 3.1415927
+position = Vector2(920, 23.99998)
+rotation = -3.1415925
 shape = SubResource("RectangleShape2D_rgh2o")
 one_way_collision = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1889, 543)
+position = Vector2(1889, 374.00003)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_idj7w")
 one_way_collision = true

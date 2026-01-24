@@ -5,10 +5,12 @@ var active = false
 var speed = 2200
 var score = 0
 var scoreModifier = 1
+var hitSomething = false
 
 var fixersHolding : Array[fixer]
 @onready var col : CollisionShape2D = get_node("CollisionShape2D")
 @onready var hud : Hud = get_tree().root.get_node("/root/Main/hud")
+@onready var manager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")
 
 func _physics_process(delta: float) -> void:
 	if not active:
@@ -97,10 +99,16 @@ func setActive(value : bool):
 	col.disabled = not value
 	score = 0
 	scoreModifier = 1
+	hitSomething = false
 
 func onScreenExited() -> void:
 	for f in fixersHolding:
 		f.setActive(false)
+	
+	if hitSomething:
+		manager.streak += 1
+	else:
+		manager.streak = 1
 	
 	fixersHolding.clear()
 	setActive(false)
@@ -109,5 +117,6 @@ func onScreenExited() -> void:
 func onRobotDetected(body: Node2D) -> void:
 	var robot : Robot = body
 	robot.defeat()
-	score += 10 * scoreModifier
+	score += 10 * scoreModifier * manager.streak
 	hud.add_score(score)
+	hitSomething = true

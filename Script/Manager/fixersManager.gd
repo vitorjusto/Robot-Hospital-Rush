@@ -5,6 +5,7 @@ class_name fixersManager
 @onready var projFixerScene : PackedScene = load("res://Scenes/Fixers/ShootProjectile.tscn")
 
 var scoreFrenzyTimer = 0
+var streak = 1
 
 func _ready() -> void:
 	for i in range(0, 10):
