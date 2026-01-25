@@ -11,7 +11,7 @@ var active = false
 
 var timer = 20
 var timer2 = 1
-
+var explosionCooldown = 0
 func _physics_process(delta: float) -> void:
 	if not active:
 		return
@@ -22,11 +22,19 @@ func _physics_process(delta: float) -> void:
 		modulate = Color.BLACK
 		main.EndGame()
 	elif timer < 10:
-		modulate = Color.RED
+		explosionCooldown -= delta
+		
+		if explosionCooldown <= 0:
+			if modulate == Color.RED:
+				modulate = Color.YELLOW
+			else:
+				modulate = Color.RED
+			explosionCooldown = 0.1
+		
 	elif manager.frezeTimer > 0:
 		modulate = Color.BLUE
 	else:
-		modulate = Color.WHITE
+		modulate = Color.from_rgba8(0, 212, 255, 255)
 	
 	velocity = speed / 2 if manager.frezeTimer > 0 else speed
 	
@@ -44,8 +52,14 @@ func reset():
 	setActive(false)
 	timer2 = 1
 
+func _ready() -> void:
+	setActive(false)
+
 func setActive(v : bool):
 	timer = 40
 	active = v
 	visible = active
 	col.set_deferred("disabled", not active)
+	
+	if not active:
+		position = Vector2(2000, 2000)

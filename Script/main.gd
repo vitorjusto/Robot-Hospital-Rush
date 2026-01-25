@@ -2,17 +2,18 @@ extends Node2D
 class_name Main
 
 var isPaused = false
+var bestScore = 0
 var pausedObjects = []
 @onready var clPause : CanvasLayer = get_node("clPause")
 @onready var hud : Hud = get_node("hud")
 @onready var clEndScreen : CanvasLayer = get_node("clEndScreen")
 @onready var clConfirmScreen : CanvasLayer = get_node("clConfirmScreen")
 @onready var lblScore : Label = get_node("clEndScreen/lblScore")
+@onready var lblBestScore : Label = get_node("clEndScreen/lblBestScore")
 
 ##PauseLabels
 @onready var lblContinue : Label = get_node("clPause/lblPauseContinue")
 @onready var lblRestart : Label = get_node("clPause/lblPauseRestart")
-@onready var lblExit : Label = get_node("clPause/lblPauseExit")
 
 ##ConfirmLables
 @onready var lblYes : Label = get_node("clConfirmScreen/lblYes")
@@ -20,31 +21,21 @@ var pausedObjects = []
 
 ##EndLables
 @onready var lblEndRestart : Label = get_node("clEndScreen/lblEndRestart")
-@onready var lblEndExit : Label = get_node("clEndScreen/lblEndExit")
 
 @export var rManager : RobotManager
 @export var fManager : fixersManager
 @export var player : Player
 @export var powerUp : PowerUp
 @export var bombRobot : BombRobot
+@export var scoreManager : ScoreLabelManager
 
 var selectedIndex = 0
 var yesSelected = false
 
 func _process(delta: float) -> void:
 	if clEndScreen.visible:
-		if Input.is_action_just_pressed("Left"):
-			selectedIndex = clamp(selectedIndex - 1, 0, 1)
-		elif Input.is_action_just_pressed("Right"):
-			selectedIndex = clamp(selectedIndex + 1, 0, 1)
-			
-		lblEndRestart.modulate = Color.WHITE
-		lblEndExit.modulate = Color.WHITE
 		
-		if selectedIndex == 0:
-			lblEndRestart.modulate = Color.BLUE
-		elif selectedIndex == 1:
-			lblEndExit.modulate =  Color.BLUE
+		lblEndRestart.modulate = Color.BLUE
 		
 		if Input.is_action_just_pressed("Shoot"):
 			if selectedIndex == 0:
@@ -84,20 +75,17 @@ func _process(delta: float) -> void:
 	elif clPause.visible:
 		
 		if Input.is_action_just_pressed("Left"):
-			selectedIndex = clamp(selectedIndex - 1, 0, 2)
+			selectedIndex = clamp(selectedIndex - 1, 0, 1)
 		elif Input.is_action_just_pressed("Right"):
-			selectedIndex = clamp(selectedIndex + 1, 0, 2)
+			selectedIndex = clamp(selectedIndex + 1, 0, 1)
 		
 		lblContinue.modulate =  Color.WHITE
 		lblRestart.modulate = Color.WHITE
-		lblExit.modulate = Color.WHITE
 		
 		if selectedIndex == 0:
 			lblContinue.modulate = Color.BLUE
 		elif selectedIndex == 1:
 			lblRestart.modulate =  Color.BLUE
-		elif selectedIndex == 2:
-			lblExit.modulate =  Color.BLUE
 		
 		if Input.is_action_just_pressed("Shoot"):
 			if selectedIndex == 0:
@@ -116,9 +104,6 @@ func UnpauseObjects():
 		i.set_process(true)
 		if i is AnimatedSprite2D:
 			var ani : AnimatedSprite2D = i
-			ani.play()
-		if i is AnimationPlayer:
-			var ani : AnimationPlayer = i
 			ani.play()
 			
 	pausedObjects.clear()
@@ -147,6 +132,14 @@ func EndGame():
 	clEndScreen.visible = true
 	rManager.deactivateEveryRobot()
 	lblScore.text = "%d" % hud.score
+	
+	if hud.score > bestScore:
+		bestScore = hud.score
+		lblBestScore.modulate = Color.YELLOW
+	else:
+		lblBestScore.modulate = Color.LIGHT_GRAY
+	
+	lblBestScore.text = "Best Score: %d" % bestScore
 
 func reloadGame():
 	rManager.resetManager()
@@ -156,6 +149,7 @@ func reloadGame():
 	player.velocity = Vector2(0, 0)
 	powerUp.resetPowerUp()
 	bombRobot.ResetBombRobot()
+	scoreManager.resetScore()
 	UnpauseObjects()
 	clEndScreen.visible = false
 	clConfirmScreen.visible = false

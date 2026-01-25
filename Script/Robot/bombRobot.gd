@@ -55,6 +55,7 @@ func set_running_state():
 		position = rightAnchor.position
 		speed = -600
 	exCol.set_deferred("disabled", true)
+	visible = true
 
 func set_idle_state():
 	state = ESTATE.Idle
@@ -62,6 +63,7 @@ func set_idle_state():
 	startOnLeft = not startOnLeft
 	col.set_deferred("disabled", true)
 	exCol.set_deferred("disabled", true)
+	visible = false
 
 func set_exploding_state():
 	state = ESTATE.Exploding
@@ -71,10 +73,12 @@ func set_exploding_state():
 
 func _on_area_entered(area: Area2D) -> void:
 	set_exploding_state()
+	var shoot : ShootProjectile = area
+	shoot.hitSomething = true
 
 func onRobotDetected(body: Node2D) -> void:
 	score += 10
-	hud.add_score(score * manager.streak)
+	hud.add_score(score * manager.streak, body.position)
 	var robot : Robot = body
 	robot.setActive(false)
 	

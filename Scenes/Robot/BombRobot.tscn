@@ -1,12 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgg7peqqvy83l"]
+[gd_scene load_steps=8 format=3 uid="uid://bgg7peqqvy83l"]
 
 [ext_resource type="Script" uid="uid://cfoojkmj0et3d" path="res://Script/Robot/bombRobot.gd" id="1_8x337"]
+[ext_resource type="Texture2D" uid="uid://wcoyc2xnohso" path="res://Assets/floorTiles.png" id="2_xlj0f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxsma"]
 size = Vector2(80, 80)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8x337"]
 radius = 320.09998
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaa3s"]
+atlas = ExtResource("2_xlj0f")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hrhi"]
+atlas = ExtResource("2_xlj0f")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gysic"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaa3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hrhi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="BombRobot" type="Area2D"]
 collision_layer = 0
@@ -24,6 +47,12 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodingArea"]
 shape = SubResource("CircleShape2D_8x337")
 disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_gysic")
+autoplay = "default"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="ExplodingArea" to="." method="onRobotDetected"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmrttte80phmr"]
+
+[ext_resource type="Script" uid="uid://dicqoptrvnuwi" path="res://Script/scoreLabels.gd" id="1_aldbk"]
+[ext_resource type="Texture2D" uid="uid://cf4pb13gjveqv" path="res://Assets/scoreExplosion.png" id="2_bxbp3"]
+
+[sub_resource type="Animation" id="Animation_bxbp3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aldbk"]
+resource_name = "new_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbh65"]
+_data = {
+&"RESET": SubResource("Animation_bxbp3"),
+&"new_animation": SubResource("Animation_aldbk")
+}
+
+[node name="ScoreLabels" type="Node2D"]
+script = ExtResource("1_aldbk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fbh65")
+}
+speed_scale = 6.0
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ScoreExplosion" type="Sprite2D" parent="Node2D"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_bxbp3")
+
+[node name="lblScore" type="Label" parent="Node2D"]
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+text = "100"
+horizontal_alignment = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -7,6 +7,7 @@ enum ESTATE{ Idle, Running}
 @onready var hud : Hud = get_tree().root.get_node("/root/Main/hud")
 @onready var manager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")
 @onready var robotManager : RobotManager = get_tree().root.get_node("/root/Main/RobotManager")
+@onready var ani : AnimatedSprite2D = get_node("AnimatedSprite")
 
 const INITIAL_STATE = ESTATE.Idle
 const INITIAL_TIMER = 5
@@ -27,6 +28,7 @@ func resetPowerUp():
 	startOnLeft = true
 	speed = INITIAL_SPEED
 	timer = INITIAL_TIMER
+	position = leftAnchor.position
 
 func _process(delta: float) -> void:
 	if state == ESTATE.Idle:
@@ -53,25 +55,34 @@ func set_running_state():
 	
 	if rng == 0:
 		Type = EPOWERUPTYPE.TimerUp
+		ani.play("TimerUp")
 	elif rng == 1:
 		Type = EPOWERUPTYPE.ScoreMult
+		ani.play("ScoreMult")
 	elif rng == 2:
 		Type = EPOWERUPTYPE.ScoreFrenzy
+		ani.play("ScoreFrenzy")
 	elif rng == 3:
 		Type = EPOWERUPTYPE.SuperTimerUp
+		ani.play("SuperTimerUp")
 	elif rng == 4:
 		Type = EPOWERUPTYPE.SuperScoreMult
+		ani.play("SuperScoreMult")
 	elif rng == 5:
 		Type = EPOWERUPTYPE.ScreenNuke
+		ani.play("ScreenNuke")
 	elif rng == 6:
 		Type = EPOWERUPTYPE.FrezeTime
+		ani.play("FrezeTime")
 	
+	visible = true
 
 func set_idle_state():
 	state = ESTATE.Idle
 	timer = 5
 	startOnLeft = not startOnLeft
 	col.set_deferred("disabled", true)
+	visible = false
 
 func _on_area_entered(area: Area2D) -> void:
 	if Type == EPOWERUPTYPE.TimerUp:
@@ -79,8 +90,6 @@ func _on_area_entered(area: Area2D) -> void:
 	elif Type == EPOWERUPTYPE.ScoreMult:
 		var proj : ShootProjectile = area
 		proj.scoreModifier = 10
-	elif Type == EPOWERUPTYPE.ScoreFrenzy:
-		manager.scoreFrenzyTimer = 10
 	elif Type == EPOWERUPTYPE.ScoreFrenzy:
 		manager.scoreFrenzyTimer = 10
 	elif Type == EPOWERUPTYPE.SuperTimerUp:

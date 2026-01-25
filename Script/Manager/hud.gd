@@ -9,6 +9,7 @@ var timerSpeedModifier = 1
 @onready var lblTimer: Label = get_node("lblTimer")
 @export var manager : RobotManager
 @export var main : Main
+@onready var scoreManager : ScoreLabelManager = get_tree().root.get_node("/root/Main/ScoreLabelManager")
 
 func resetHud():
 	score = 0
@@ -24,9 +25,10 @@ func _process(delta: float) -> void:
 	if timer <= 0:
 		main.EndGame()
 
-func add_score(s: int):
+func add_score(s: int, pos : Vector2):
 	score += s
 	lblScore.text = "%d" %score
+	scoreManager.setLabel(s, pos)
 
 func add_timer(t: int):
 	timer += t

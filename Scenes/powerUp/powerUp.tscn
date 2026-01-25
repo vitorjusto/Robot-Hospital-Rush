@@ -1,9 +1,97 @@
-[gd_scene load_steps=3 format=3 uid="uid://csb3i8pceet1u"]
+[gd_scene load_steps=12 format=3 uid="uid://csb3i8pceet1u"]
 
 [ext_resource type="Script" uid="uid://c11n4kpw8p72b" path="res://Script/powerUp/powerUp.gd" id="1_urwwq"]
+[ext_resource type="Texture2D" uid="uid://d0yjr2605jl3h" path="res://Assets/powerUps.png" id="2_ofaqa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sax64"]
-radius = 24.0
+radius = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofaqa"]
+atlas = ExtResource("2_ofaqa")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81gjd"]
+atlas = ExtResource("2_ofaqa")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kjvh"]
+atlas = ExtResource("2_ofaqa")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sia4"]
+atlas = ExtResource("2_ofaqa")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhm7a"]
+atlas = ExtResource("2_ofaqa")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2yoq"]
+atlas = ExtResource("2_ofaqa")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loyfv"]
+atlas = ExtResource("2_ofaqa")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_urwwq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofaqa")
+}],
+"loop": true,
+"name": &"FrezeTime",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81gjd")
+}],
+"loop": true,
+"name": &"ScoreFrenzy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kjvh")
+}],
+"loop": true,
+"name": &"ScoreMult",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sia4")
+}],
+"loop": true,
+"name": &"ScreenNuke",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhm7a")
+}],
+"loop": true,
+"name": &"SuperScoreMult",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2yoq")
+}],
+"loop": true,
+"name": &"SuperTimerUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loyfv")
+}],
+"loop": true,
+"name": &"TimerUp",
+"speed": 5.0
+}]
 
 [node name="PowerUp" type="Area2D"]
 collision_layer = 0
@@ -13,6 +101,11 @@ script = ExtResource("1_urwwq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sax64")
 debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_urwwq")
+animation = &"TimerUp"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

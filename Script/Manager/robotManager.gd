@@ -72,9 +72,9 @@ func nuke():
 	var score = 0
 	
 	for r in actives:
+		score += 10
+		hud.add_score(score, r.position)
 		r.setActive(false)
-		score += 100
-		hud.add_score(score)
 
 func deactivateEveryRobot():
 	var actives = robot.filter(func(x): return x.active)

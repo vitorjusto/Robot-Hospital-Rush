@@ -1,14 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://pg2i7765i6jp"]
+[gd_scene load_steps=7 format=3 uid="uid://pg2i7765i6jp"]
 
 [ext_resource type="Script" uid="uid://coo0pbb04ehb0" path="res://Script/Robot/robot.gd" id="1_d8uwf"]
+[ext_resource type="Texture2D" uid="uid://wcoyc2xnohso" path="res://Assets/floorTiles.png" id="2_04cnn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pt7v1"]
 size = Vector2(80, 80)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8uwf"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb52k"]
+atlas = ExtResource("2_04cnn")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1g16"]
+atlas = ExtResource("2_04cnn")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qg8xw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb52k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1g16")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Robot" type="CharacterBody2D"]
+modulate = Color(0, 0.83137256, 1, 1)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_d8uwf")
@@ -16,9 +37,8 @@ script = ExtResource("1_d8uwf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pt7v1")
 
-[node name="Panel" type="Panel" parent="."]
-offset_left = -40.0
-offset_top = -40.0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_d8uwf")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_qg8xw")
+autoplay = "default"
+frame_progress = 0.28518903

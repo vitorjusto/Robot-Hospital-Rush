@@ -14,7 +14,7 @@ func resetManager():
 		i.setActive(false)
 
 func _ready() -> void:
-	for i in range(0, 10):
+	for i in range(0, 30):
 		addProj()
 
 func _process(delta : float):
