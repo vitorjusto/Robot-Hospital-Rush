@@ -11,10 +11,20 @@ var fixersHolding : Array[fixer]
 @onready var col : CollisionShape2D = get_node("CollisionShape2D")
 @onready var hud : Hud = get_tree().root.get_node("/root/Main/hud")
 @onready var manager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")
+@onready var ani : AnimatedSprite2D = get_node("AnimatedSprite2D")
 
 func _physics_process(delta: float) -> void:
 	if not active:
 		return;
+	
+	if scoreModifier == 10:
+		ani.play("Mult10")
+	elif scoreModifier == 20:
+		ani.play("Mult20")
+	elif scoreModifier == 2:
+		ani.play("ScoreFrenzy")
+	else:
+		ani.play("default")
 	
 	position += Vector2(0, -speed) * delta
 	

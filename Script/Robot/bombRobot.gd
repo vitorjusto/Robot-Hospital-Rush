@@ -19,6 +19,9 @@ var speed = INITIAL_SPEED
 @onready var col : CollisionShape2D = get_node("CollisionShape2D")
 @onready var exCol : CollisionShape2D = get_node("ExplodingArea/CollisionShape2D")
 
+@onready var ani : AnimatedSprite2D = get_node("AnimatedSprite2D")
+@onready var ex : Sprite2D = get_node("ScoreExplosion")
+
 @export var leftAnchor: Node2D
 @export var rightAnchor: Node2D
 
@@ -29,6 +32,7 @@ func ResetBombRobot():
 	speed = INITIAL_SPEED
 	timer = INITIAL_TIMER
 	position = leftAnchor.position
+	set_idle_state()
 
 func _process(delta: float) -> void:
 	if state == ESTATE.Idle:
@@ -56,6 +60,8 @@ func set_running_state():
 		speed = -600
 	exCol.set_deferred("disabled", true)
 	visible = true
+	ex.visible = false
+	ani.visible = true
 
 func set_idle_state():
 	state = ESTATE.Idle
@@ -64,12 +70,16 @@ func set_idle_state():
 	col.set_deferred("disabled", true)
 	exCol.set_deferred("disabled", true)
 	visible = false
+	ex.visible = false
+	ani.visible = true
 
 func set_exploding_state():
 	state = ESTATE.Exploding
 	exCol.set_deferred("disabled", false)
 	col.set_deferred("disabled", true)
 	explodingTimer = 2
+	ex.visible = true
+	ani.visible = false
 
 func _on_area_entered(area: Area2D) -> void:
 	set_exploding_state()

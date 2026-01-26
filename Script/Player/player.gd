@@ -13,6 +13,11 @@ func _physics_process(delta: float) -> void:
 		ani.play("Idle")
 	else:
 		ani.play("Walk")
+	
+	if fixersManager.scoreFrenzyTimer > 0:
+		modulate = Color.from_rgba8(200, 255, 255, 255)
+	else:
+		modulate = Color.from_rgba8(128, 255, 192, 255)
 	velocity.x = move_toward(velocity.x, direction * SPEED, 100)
 
 	move_and_slide()

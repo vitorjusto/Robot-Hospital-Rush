@@ -37,11 +37,8 @@ func _process(delta: float) -> void:
 		
 		lblEndRestart.modulate = Color.BLUE
 		
-		if Input.is_action_just_pressed("Shoot"):
-			if selectedIndex == 0:
+		if Input.is_action_just_pressed("Get"):
 				reloadGame()
-			elif selectedIndex == 1:
-				get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
 	elif Input.is_action_just_pressed("Pause") and not clConfirmScreen.visible:
 		selectedIndex = 0
 		isPaused = !isPaused
@@ -119,10 +116,6 @@ func PauseObjects(nodes : Array[Node]):
 		
 		if i is AnimatedSprite2D:
 			var ani : AnimatedSprite2D = i
-			ani.pause()
-			
-		if i is AnimationPlayer:
-			var ani : AnimationPlayer = i
 			ani.pause()
 		
 		PauseObjects(i.get_children())

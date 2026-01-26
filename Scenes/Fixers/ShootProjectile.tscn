@@ -1,10 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://jqwsure85jk4"]
+[gd_scene load_steps=9 format=3 uid="uid://jqwsure85jk4"]
 
 [ext_resource type="Script" uid="uid://dyym5fbgrl5a" path="res://Script/Fixers/shootProjectile.gd" id="1_yyj0j"]
 [ext_resource type="Texture2D" uid="uid://bxo0j4wdtnr37" path="res://Assets/playerProj.png" id="2_p3n5f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ebtte"]
 radius = 27.018513
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3n5f"]
+atlas = ExtResource("2_p3n5f")
+region = Rect2(18, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lakeu"]
+atlas = ExtResource("2_p3n5f")
+region = Rect2(0, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnf4c"]
+atlas = ExtResource("2_p3n5f")
+region = Rect2(18, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1kul"]
+atlas = ExtResource("2_p3n5f")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jxmdp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3n5f")
+}],
+"loop": true,
+"name": &"Mult10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lakeu")
+}],
+"loop": true,
+"name": &"Mult20",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnf4c")
+}],
+"loop": true,
+"name": &"ScoreFrenzy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1kul")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="ShootProjectile" type="Area2D"]
 collision_layer = 2
@@ -19,9 +70,9 @@ debug_color = Color(0, 1, 0.69803923, 0.41960785)
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 rect = Rect2(-28, -28, 56, 56)
 
-[node name="PlayerProj" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
-texture = ExtResource("2_p3n5f")
+sprite_frames = SubResource("SpriteFrames_jxmdp")
 
 [connection signal="body_entered" from="." to="." method="onRobotDetected"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="onScreenExited"]
