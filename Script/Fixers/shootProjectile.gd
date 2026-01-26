@@ -12,6 +12,7 @@ var fixersHolding : Array[fixer]
 @onready var hud : Hud = get_tree().root.get_node("/root/Main/hud")
 @onready var manager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")
 @onready var ani : AnimatedSprite2D = get_node("AnimatedSprite2D")
+@onready var aud : AudioStreamPlayer = get_node("AudioStreamPlayer")
 
 func _physics_process(delta: float) -> void:
 	if not active:
@@ -130,3 +131,4 @@ func onRobotDetected(body: Node2D) -> void:
 	hud.add_score(score, body.position)
 	robot.defeat()
 	hitSomething = true
+	aud.play()

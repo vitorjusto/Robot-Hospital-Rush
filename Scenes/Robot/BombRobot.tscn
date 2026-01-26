@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgg7peqqvy83l"]
+[gd_scene load_steps=13 format=3 uid="uid://bgg7peqqvy83l"]
 
 [ext_resource type="Script" uid="uid://cfoojkmj0et3d" path="res://Script/Robot/bombRobot.gd" id="1_8x337"]
 [ext_resource type="Texture2D" uid="uid://wcoyc2xnohso" path="res://Assets/floorTiles.png" id="2_xlj0f"]
 [ext_resource type="Texture2D" uid="uid://cf4pb13gjveqv" path="res://Assets/scoreExplosion.png" id="3_kaa3s"]
+[ext_resource type="AudioStream" uid="uid://dnniasj5whr3p" path="res://Assets/explosion (1).wav" id="4_5hrhi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxsma"]
 size = Vector2(80, 80)
@@ -32,6 +33,21 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Animation" id="Animation_gysic"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScoreExplosion:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(33, 33)]
+}
+
 [sub_resource type="Animation" id="Animation_5hrhi"]
 resource_name = "new_animation"
 length = 3.0
@@ -47,21 +63,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(33, 33), Vector2(37, 37), Vector2(33, 33)]
-}
-
-[sub_resource type="Animation" id="Animation_gysic"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ScoreExplosion:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(33, 33)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6pwjl"]
@@ -105,6 +106,10 @@ libraries = {
 }
 autoplay = "new_animation"
 speed_scale = 5.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5hrhi")
+volume_db = -10.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="ExplodingArea" to="." method="onRobotDetected"]

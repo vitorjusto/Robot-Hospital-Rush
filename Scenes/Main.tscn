@@ -163,7 +163,7 @@ position = Vector2(960, 1000)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(32.000004, 476)
+position = Vector2(-31.999996, 480)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_kln2b")
 one_way_collision = true
@@ -189,17 +189,17 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_v1gob")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(960.125, 903.5)
+position = Vector2(960, 888)
 shape = SubResource("RectangleShape2D_rgh2o")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(920, 23.99998)
+position = Vector2(920, -24)
 rotation = -3.1415925
 shape = SubResource("RectangleShape2D_rgh2o")
 one_way_collision = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1889, 374.00003)
+position = Vector2(1952, 376)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_idj7w")
 one_way_collision = true
@@ -343,18 +343,18 @@ text = "Are you Sure?"
 label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="lblYes" type="Label" parent="clConfirmScreen"]
-offset_left = 504.0
+offset_left = 592.0
 offset_top = 488.0
-offset_right = 928.0
+offset_right = 1016.0
 offset_bottom = 576.0
 text = "Yes"
 label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="lblNo" type="Label" parent="clConfirmScreen"]
-offset_left = 1056.0
-offset_top = 472.0
-offset_right = 1480.0
-offset_bottom = 560.0
+offset_left = 1216.0
+offset_top = 488.0
+offset_right = 1640.0
+offset_bottom = 576.0
 text = "No"
 label_settings = SubResource("LabelSettings_jw32o")
 

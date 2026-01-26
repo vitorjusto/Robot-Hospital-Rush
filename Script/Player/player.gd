@@ -4,6 +4,7 @@ class_name Player
 const SPEED = 1000.0
 @onready var fixersManager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")
 @onready var ani : AnimatedSprite2D = get_node("AnimatedSprite2D")
+@onready var aud : AudioStreamPlayer = get_node("AudioStreamPlayer")
 
 func _physics_process(delta: float) -> void:
 	
@@ -27,3 +28,4 @@ func _physics_process(delta: float) -> void:
 
 func Shoot():
 	fixersManager.shootProj(position)
+	aud.play(0)

@@ -5,6 +5,7 @@ enum ESTATE{ Idle, Running, Exploding}
 @onready var hud : Hud = get_tree().root.get_node("/root/Main/hud")
 @onready var manager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")
 @onready var robotManager : RobotManager = get_tree().root.get_node("/root/Main/RobotManager")
+@onready var aud : AudioStreamPlayer = get_node("AudioStreamPlayer")
 
 const INITIAL_TIMER = 30
 const INITIAL_SPEED = 600
@@ -80,6 +81,7 @@ func set_exploding_state():
 	explodingTimer = 2
 	ex.visible = true
 	ani.visible = false
+	aud.play(0)
 
 func _on_area_entered(area: Area2D) -> void:
 	set_exploding_state()

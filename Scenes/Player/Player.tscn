@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ciwkb2k38w8cb"]
+[gd_scene load_steps=9 format=3 uid="uid://ciwkb2k38w8cb"]
 
 [ext_resource type="Script" uid="uid://frvd8fxp1jng" path="res://Script/Player/player.gd" id="1_s0eop"]
 [ext_resource type="Texture2D" uid="uid://wcoyc2xnohso" path="res://Assets/floorTiles.png" id="2_ft8w5"]
+[ext_resource type="AudioStream" uid="uid://cgmrkh3us006v" path="res://Assets/PlayerShoot.wav" id="3_h54ih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3ax4"]
 size = Vector2(80, 80)
@@ -52,3 +53,7 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_4wape")
 animation = &"Idle"
 autoplay = "Idle"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_h54ih")
+volume_db = -30.0

@@ -1,18 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://c625owvwb84gv"]
+[gd_scene load_steps=6 format=3 uid="uid://c625owvwb84gv"]
 
 [ext_resource type="Script" uid="uid://il5dursfiu6w" path="res://Script/titleScreen.gd" id="1_uebgo"]
+[ext_resource type="FontFile" uid="uid://dc171her4hxst" path="res://Assets/static/PixelifySans-Bold.ttf" id="2_vmg2h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmg2h"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(0, 0.32156864, 0, 1)
+bg_color = Color(0.2, 0.4, 0.3019608, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_8l4an"]
+font = ExtResource("2_vmg2h")
+font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_n15yj"]
+font = ExtResource("2_vmg2h")
+font_size = 64
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_uebgo")
@@ -25,8 +34,17 @@ offset_bottom = 1160.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vmg2h")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 592.0
 offset_top = 240.0
-offset_right = 867.0
-offset_bottom = 263.0
-text = "SUPER TITLE SCREEN PLACEHOLDER"
+offset_right = 1920.0
+offset_bottom = 394.0
+text = "Robot Hospital Rush"
+label_settings = SubResource("LabelSettings_8l4an")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_top = 616.0
+offset_right = 1920.0
+offset_bottom = 696.0
+text = "Press z To Start"
+label_settings = SubResource("LabelSettings_n15yj")
+horizontal_alignment = 1

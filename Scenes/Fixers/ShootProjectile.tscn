@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://jqwsure85jk4"]
+[gd_scene load_steps=10 format=3 uid="uid://jqwsure85jk4"]
 
 [ext_resource type="Script" uid="uid://dyym5fbgrl5a" path="res://Script/Fixers/shootProjectile.gd" id="1_yyj0j"]
 [ext_resource type="Texture2D" uid="uid://bxo0j4wdtnr37" path="res://Assets/playerProj.png" id="2_p3n5f"]
+[ext_resource type="AudioStream" uid="uid://bki4jmvlvedou" path="res://Assets/robotHit.wav" id="3_lakeu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ebtte"]
 radius = 27.018513
@@ -73,6 +74,10 @@ rect = Rect2(-28, -28, 56, 56)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_jxmdp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lakeu")
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="onRobotDetected"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="onScreenExited"]

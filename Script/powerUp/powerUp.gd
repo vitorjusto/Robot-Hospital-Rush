@@ -8,6 +8,7 @@ enum ESTATE{ Idle, Running}
 @onready var manager : fixersManager = get_tree().root.get_node("/root/Main/FixersManager")
 @onready var robotManager : RobotManager = get_tree().root.get_node("/root/Main/RobotManager")
 @onready var ani : AnimatedSprite2D = get_node("AnimatedSprite")
+@onready var aud : AudioStreamPlayer = get_node("AudioStreamPlayer")
 
 const INITIAL_STATE = ESTATE.Idle
 const INITIAL_TIMER = 5
@@ -102,4 +103,5 @@ func _on_area_entered(area: Area2D) -> void:
 	elif Type == EPOWERUPTYPE.FrezeTime:
 		robotManager.frezeTimer = 5
 	
+	aud.play(0)
 	set_idle_state()
