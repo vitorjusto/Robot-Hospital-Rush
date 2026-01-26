@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bgg7peqqvy83l"]
 
 [ext_resource type="Script" uid="uid://cfoojkmj0et3d" path="res://Script/Robot/bombRobot.gd" id="1_8x337"]
-[ext_resource type="Texture2D" uid="uid://wcoyc2xnohso" path="res://Assets/floorTiles.png" id="2_xlj0f"]
+[ext_resource type="Texture2D" uid="uid://bb15t6h55aj84" path="res://Assets/Robot.png" id="2_5hrhi"]
 [ext_resource type="Texture2D" uid="uid://cf4pb13gjveqv" path="res://Assets/scoreExplosion.png" id="3_kaa3s"]
 [ext_resource type="AudioStream" uid="uid://dnniasj5whr3p" path="res://Assets/explosion (1).wav" id="4_5hrhi"]
 
@@ -11,22 +11,22 @@ size = Vector2(80, 80)
 [sub_resource type="CircleShape2D" id="CircleShape2D_8x337"]
 radius = 320.09998
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kaa3s"]
-atlas = ExtResource("2_xlj0f")
-region = Rect2(0, 32, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gysic"]
+atlas = ExtResource("2_5hrhi")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5hrhi"]
-atlas = ExtResource("2_xlj0f")
-region = Rect2(32, 32, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pwjl"]
+atlas = ExtResource("2_5hrhi")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gysic"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kaa3s")
+"texture": SubResource("AtlasTexture_gysic")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5hrhi")
+"texture": SubResource("AtlasTexture_6pwjl")
 }],
 "loop": true,
 "name": &"default",

@@ -124,7 +124,7 @@ func EndGame():
 	PauseObjects(get_children())
 	clEndScreen.visible = true
 	rManager.deactivateEveryRobot()
-	lblScore.text = "%d" % hud.score
+	lblScore.text = "Score: %d" % hud.score
 	
 	if hud.score > bestScore:
 		bestScore = hud.score
@@ -138,7 +138,7 @@ func reloadGame():
 	rManager.resetManager()
 	fManager.resetManager()
 	hud.resetHud()
-	player.position = Vector2(960, 1000)
+	player.position = Vector2(960, 968)
 	player.velocity = Vector2(0, 0)
 	powerUp.resetPowerUp()
 	bombRobot.ResetBombRobot()

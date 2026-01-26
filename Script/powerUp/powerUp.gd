@@ -18,6 +18,7 @@ var state : ESTATE = INITIAL_STATE
 var timer = INITIAL_TIMER
 var startOnLeft = true
 var speed = INITIAL_SPEED
+var cicle = 1
 
 @onready var col : CollisionShape2D = get_node("CollisionShape2D")
 
@@ -30,6 +31,7 @@ func resetPowerUp():
 	speed = INITIAL_SPEED
 	timer = INITIAL_TIMER
 	position = leftAnchor.position
+	cicle = 1
 
 func _process(delta: float) -> void:
 	if state == ESTATE.Idle:
@@ -37,7 +39,7 @@ func _process(delta: float) -> void:
 		if timer <= 0:
 			set_running_state()
 	else:
-		position.x += speed * delta
+		position.x += speed * delta * ( 1 + (cicle / 50 ))
 		if position.x < leftAnchor.position.x or position.x > rightAnchor.position.x:
 			set_idle_state()
 		
@@ -45,6 +47,7 @@ func _process(delta: float) -> void:
 func set_running_state():
 	col.set_deferred("disabled", false)
 	state = ESTATE.Running
+	cicle+= 1
 	if startOnLeft:
 		position = leftAnchor.position
 		speed = 400
@@ -52,29 +55,33 @@ func set_running_state():
 		position = rightAnchor.position
 		speed = -400
 	
-	var rng = randi_range(0, 6)
-	
-	if rng == 0:
+	if hud.timer < 30:
 		Type = EPOWERUPTYPE.TimerUp
 		ani.play("TimerUp")
-	elif rng == 1:
-		Type = EPOWERUPTYPE.ScoreMult
-		ani.play("ScoreMult")
-	elif rng == 2:
-		Type = EPOWERUPTYPE.ScoreFrenzy
-		ani.play("ScoreFrenzy")
-	elif rng == 3:
-		Type = EPOWERUPTYPE.SuperTimerUp
-		ani.play("SuperTimerUp")
-	elif rng == 4:
-		Type = EPOWERUPTYPE.SuperScoreMult
-		ani.play("SuperScoreMult")
-	elif rng == 5:
-		Type = EPOWERUPTYPE.ScreenNuke
-		ani.play("ScreenNuke")
-	elif rng == 6:
-		Type = EPOWERUPTYPE.FrezeTime
-		ani.play("FrezeTime")
+	else:
+		var rng = randi_range(0, 110)
+		
+		if rng <= 30:
+			Type = EPOWERUPTYPE.TimerUp
+			ani.play("TimerUp")
+		elif rng <= 50:
+			Type = EPOWERUPTYPE.ScoreMult
+			ani.play("ScoreMult")
+		elif rng <= 70:
+			Type = EPOWERUPTYPE.ScoreFrenzy
+			ani.play("ScoreFrenzy")
+		elif rng <= 75:
+			Type = EPOWERUPTYPE.SuperTimerUp
+			ani.play("SuperTimerUp")
+		elif rng <= 80:
+			Type = EPOWERUPTYPE.SuperScoreMult
+			ani.play("SuperScoreMult")
+		elif rng <= 95:
+			Type = EPOWERUPTYPE.ScreenNuke
+			ani.play("ScreenNuke")
+		elif rng <= 110:
+			Type = EPOWERUPTYPE.FrezeTime
+			ani.play("FrezeTime")
 	
 	visible = true
 

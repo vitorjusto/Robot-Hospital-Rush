@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://pg2i7765i6jp"]
 
 [ext_resource type="Script" uid="uid://coo0pbb04ehb0" path="res://Script/Robot/robot.gd" id="1_d8uwf"]
-[ext_resource type="Texture2D" uid="uid://wcoyc2xnohso" path="res://Assets/floorTiles.png" id="2_04cnn"]
+[ext_resource type="Texture2D" uid="uid://bb15t6h55aj84" path="res://Assets/Robot.png" id="2_04cnn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pt7v1"]
 size = Vector2(80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jb52k"]
 atlas = ExtResource("2_04cnn")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1g16"]
 atlas = ExtResource("2_04cnn")
-region = Rect2(32, 32, 32, 32)
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qg8xw"]
 animations = [{

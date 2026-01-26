@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c4tytguh4igeq"]
+[gd_scene load_steps=29 format=3 uid="uid://c4tytguh4igeq"]
 
 [ext_resource type="Script" uid="uid://7vhjmj26pm3u" path="res://Script/main.gd" id="1_jw32o"]
 [ext_resource type="PackedScene" uid="uid://ciwkb2k38w8cb" path="res://Scenes/Player/Player.tscn" id="1_r150o"]
@@ -106,6 +106,10 @@ font_size = 32
 font = ExtResource("8_grg3l")
 font_size = 64
 
+[sub_resource type="LabelSettings" id="LabelSettings_grg3l"]
+font = ExtResource("8_grg3l")
+font_size = 128
+
 [node name="Main" type="Node2D" node_paths=PackedStringArray("rManager", "fManager", "player", "powerUp", "bombRobot", "scoreManager")]
 script = ExtResource("1_jw32o")
 rManager = NodePath("RobotManager")
@@ -205,7 +209,7 @@ position = Vector2(1984, 640)
 position = Vector2(1984, 768)
 
 [node name="Player" parent="." instance=ExtResource("1_r150o")]
-position = Vector2(960, 1000)
+position = Vector2(960, 968)
 
 [node name="FixersManager" parent="." instance=ExtResource("2_idj7w")]
 
@@ -342,36 +346,36 @@ offset_right = 2112.0
 offset_bottom = 1216.0
 
 [node name="Label" type="Label" parent="clEndScreen"]
-offset_left = 832.0
-offset_top = 256.0
-offset_right = 1199.0
-offset_bottom = 344.0
+offset_top = 160.0
+offset_right = 1920.0
+offset_bottom = 314.0
 text = "GAME OVER"
-label_settings = SubResource("LabelSettings_jw32o")
+label_settings = SubResource("LabelSettings_grg3l")
+horizontal_alignment = 1
 
 [node name="lblScore" type="Label" parent="clEndScreen"]
-offset_left = 832.0
+offset_left = 755.0
 offset_top = 352.0
-offset_right = 1199.0
+offset_right = 1165.0
 offset_bottom = 440.0
-text = "00000"
+text = "Score: 00000"
 label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="lblBestScore" type="Label" parent="clEndScreen"]
-offset_left = 712.0
-offset_top = 456.0
-offset_right = 1251.0
-offset_bottom = 544.0
+offset_left = 585.0
+offset_top = 448.0
+offset_right = 1167.0
+offset_bottom = 536.0
 text = "Best Score: 00000"
 label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="lblEndRestart" type="Label" parent="clEndScreen"]
-offset_left = 704.0
 offset_top = 664.0
-offset_right = 1333.0
+offset_right = 1920.0
 offset_bottom = 752.0
 text = "Press z to restart"
 label_settings = SubResource("LabelSettings_jw32o")
+horizontal_alignment = 1
 
 [node name="clConfirmScreen" type="CanvasLayer" parent="."]
 layer = 4
