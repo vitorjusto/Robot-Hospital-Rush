@@ -2,7 +2,6 @@
 Game made for [White Autumn Games Jam #1 🕹️](https://itch.io/jam/wag-jam-1)
 
 You can play [here](https://vitorjusto.itch.io/robot-hospital-rush)!!!
-https://github.com/vitorjusto/Robot-Hospital-Rush/blob/main/README.md
 ## Story
 In the year 30xx, in a world dominated by robots, a mysterious bug occurred on all servers, causing all robots to malfunction. Because of this, all robots globally ended up in robot hospitals, needing urgent care. 
 
