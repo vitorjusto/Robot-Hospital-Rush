@@ -9,10 +9,16 @@ You can play [here](https://vitorjusto.itch.io/robot-hospital-rush)!!!
 
  ## Techinal Decisions
  **Streak System**
+ - In this game, if you 
  **Power Ups**
- 
+ - In this game, it have multiples power ups to assist the player:
+     - Score Multipliers: mutiply the score by the number represented in the power up
+     - Timer Ups: Add more time in the timer
+     - Freze: slower down the robots
+     - Bomb: Remove all robots on screen
  **Dificult Curve**
- - 
+ - In this game, the more time you are playing, more faster everything moves.
+ - Even the timer runs faster. This decision was made to keep the player engaged to the game until the timer runs out, insead of ending up an infinite game forcing the player defeat itself. To keep fair
 
 ## Running the project
 Godot 4.5
