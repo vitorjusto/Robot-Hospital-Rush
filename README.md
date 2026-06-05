@@ -2,17 +2,22 @@
 Game made for [White Autumn Games Jam #1 🕹️](https://itch.io/jam/wag-jam-1)
 
 You can play [here](https://vitorjusto.itch.io/robot-hospital-rush)!!!
-## Story
-In the year 30xx, in a world dominated by robots, a mysterious bug occurred on all servers, causing all robots to malfunction. Because of this, all robots globally ended up in robot hospitals, needing urgent care. 
 
-You, in the role of a medical robot, will need to heal as many robots as you can by using a device called "patch chip", before one of them explodes.
+## Game Comcept
+- The theme for the mentioned Game Jam was Glitch in the System, however, this concept I used only on the theme of the game, Like a Robot hospital in a pandemic, where the pandemic was cause due to global servers errors
+- The gameplay mechanic is inspired by the **bow and arrow minigame** in **google champion island games**, to keep simple for the jam.
 
-## Controls
-Left\Right keys: Move
+ ## Techinal Decisions
+ **Streak System**
+ **Power Ups**
+ 
+ **Dificult Curve**
+ - 
 
-Spacebar: Shoot "Patch Chip"
+## Running the project
+Godot 4.5
+Clone the repo, open project.godot in Godot
+No external dependencies
 
-P: Pause
 ## Credits
-font: https://fonts.google.com/specimen/Pixelify+Sans?query=pixel+art
-everything else made by: vitorjusto
+Everything is made by: Vitorjusto
